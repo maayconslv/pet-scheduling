@@ -1,0 +1,46 @@
+@import url('./reset.css');
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+:root {
+  /* content */
+  --content-primary: #ffffff;
+  --content-secondary: #98959d;
+  --content-tertiary: #666666;
+  --content-brand: #9282fa;
+
+  /* background */
+  --background-primary: #151515;
+  --background-secondary: #1e1e1e;
+  --background-tertiary: #23242c;
+  --background-brand: #9282fa;
+  --background-highlights: #bdb4fa;
+  --border-primary: #3e3c41;
+  --border-secondary: #86818c;
+  --border-brand: #9282fa;
+  --border-divisor: #353339;
+  /* accent */
+  --accent-blue: #027df0;
+  --accent-blue-light: #16487a;
+  --accent-yellow: #f0dc02;
+  --accent-yellow-light: #756e1b;
+  --accent-orange: ##f09102;
+  --accent-orange-light: #75501b;
+
+  /* Tipografia */
+  --title: bold 2.4rem/32px 'Inter tight', sans-serif;
+  --paragraph-medium: medium 1.4rem/2.4rem 'Inter', sans-serif;
+  --paragraph-small: medium 1.2rem/1.6rem 'Inter', sans-serif;
+  --label-large: bold 1.6rem/2.4rem 'Inter', sans-serif;
+  --label-medium: bold 1.4rem/2.4rem 'Inter', sans-serif;
+  --label-small: bold 1.2rem/1.6rem 'Inter', sans-serif;
+  --link: medium 1.2rem/1.6rem 'Inter', sans-serif;
+}
+
+body {
+  background-color: var(--background-primary);
+  color: var(--content-primary);
+}
+
+body h1 {
+  font: var(--title);
+}
