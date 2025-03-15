@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+}
+
+.header-content h2 {
+  font: var(--title);
+}
+
+.header-content p {
+  font: var(--paragraph-medium);
+  color: var(--content-secondary);
+}
+
+.header-calendar__wrapper {
+  border: 1px solid var(--border-primary);
+  border-radius: 6px;
+  height: 48px;
+  display: flex;
+}
