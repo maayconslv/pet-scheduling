@@ -1,0 +1,31 @@
+.schedules {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.schedules-card {
+  border-radius: 10px;
+  background-color: var(--background-tertiary);
+}
+
+.schedules-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  border-bottom: 1px solid var(--border-secondary);
+}
+
+.schedules-header__period {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: var(--label-large);
+}
+
+.schedules-header__hour {
+  color: var(--content-secondary);
+  font: var(--label-large);
+}
