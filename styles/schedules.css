@@ -6,7 +6,7 @@
   overflow-y: auto;
   height: calc(100% - (62px * 2));
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 96%, rgba(0,0,0,0));
 }
 
 .schedules::-webkit-scrollbar {
