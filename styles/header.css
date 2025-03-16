@@ -18,5 +18,24 @@
   border: 1px solid var(--border-primary);
   border-radius: 6px;
   height: 48px;
+  width: 170px;
   display: flex;
+  align-items: center;
+  padding: 0 12px;
+}
+
+.header-calendar__wrapper img {
+  width: 20px;
+  height: 20px;
+}
+
+.header-calendar__wrapper input {
+  height: 100%;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: none;
+  font: var(--paragraph-medium);
+  color: var(--content-primary);
+  background: transparent;
 }
