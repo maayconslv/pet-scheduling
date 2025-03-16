@@ -3,6 +3,23 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  overflow-y: auto;
+  height: calc(100% - (62px * 2));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 10%, rgba(0,0,0,0));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
+}
+
+.schedules::-webkit-scrollbar {
+  width: 8px;
+}
+
+.schedules::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.schedules::-webkit-scrollbar-thumb {
+  background: var(--content-tertiary);
+  border-radius: 4px;
 }
 
 .schedules-card {
