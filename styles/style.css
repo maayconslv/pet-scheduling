@@ -52,6 +52,6 @@ body {
 }
 
 .container {
-  width: 711px;
+  width: 50%;
   height: calc(100% - (62px * 2));
 }
