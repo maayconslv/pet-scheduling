@@ -1,3 +1,7 @@
+const newScheduleButton = document.querySelector('.schedules-button');
+const newScheduleForm = document.querySelector('.modal');
+
+
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.querySelector(".header-calendar__wrapper input");
 
@@ -25,3 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+newScheduleButton.onclick = () => {
+  newScheduleForm.showModal();
+}

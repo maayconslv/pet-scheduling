@@ -173,9 +173,72 @@
     </section>
 
   </main>
+
   <button class="schedules-button">
     NOVO AGENDAMENTO
   </button>
+
+  <dialog class="modal">
+    <form class="modal-form">
+      <div>
+        <h2 class="modal-form__title">Agende um atendimento</h2>
+        <p class="modal-form__description">Preencha os dados do cliente para realizar o agendamento:</p>
+      </div>
+
+      <div class="modal-form__input">
+        <label for="tutor-name">Nome do tutor</label>      
+        <div class="form-input__wrapper">
+          <img src="./assets/icons/User--Streamline-Solar.svg" alt="">
+          <input type="text" id="tutor-name" placeholder="Helena Souza">
+        </div>
+      </div>
+
+      <div class="modal-form__input">
+        <label for="pet-name">Nome do pet</label>      
+        <div class="form-input__wrapper">
+          <img src="./assets/icons/Pet-Paw--Streamline-Core.svg" alt="">
+          <input type="text" id="pet-name" placeholder="Cheddar">
+        </div>
+      </div>
+
+      <div class="modal-form__input">
+        <label for="phone">Telefone</label>      
+        <div class="form-input__wrapper">
+          <img src="./assets/icons/User--Streamline-Solar.svg" alt="">
+          <input type="text" id="phone" placeholder="(00) 0 0000-0000">
+        </div>
+      </div>
+
+      <div class="modal-form__input">
+        <label for="phone">Descrição do serviço</label>      
+        <div class="form-input__wrapper">
+          <textarea type="tex" id="phone" placeholder="Banho e tosa"></textarea>
+        </div>
+      </div>
+
+      <div class="modal-form__data-input">
+        <div class="modal-form__input">
+          <label for="data">Data</label>      
+          <div class="form-input__wrapper">
+            <img src="./assets/icons/Calendar-Minimalistic--Streamline-Solar.svg" alt="">
+            <input type="text" id="data" placeholder="10/01/2025">
+          </div>
+        </div>
+
+        <div class="modal-form__input">
+          <label for="=hour">Hora</label>      
+          <div class="form-input__wrapper">
+            <img src="./assets/icons/Clock-Circle--Streamline-Solar.svg" alt="">
+            <input type="text" id="=hour" placeholder="12:00">
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="modal-form__button-wrapper">
+      <button class="modal-form__button">AGENDAR</button>
+    </div>
+  </dialog>
   
   <script src="scripts/main.js"></script>
 </body>

@@ -1,0 +1,108 @@
+.modal {
+  background-color: var(--background-tertiary);
+  color: var(--content-primary);
+  border-radius: 12px;
+  padding: 40px;
+  border: none;
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    backdrop-filter: blur(10px);
+}
+
+.modal-form__title {
+  font: var(--title);
+}
+
+.modal-form__description {
+  font: var(--paragraph-medium);
+  color: var(--content-secondary)
+}
+
+.modal-form__input {
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-form__input label {
+  font: var(--label-medium);;
+}
+
+.form-input__wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 8px;
+  border: 1px solid var(--border-primary);
+  padding: 12px;
+  gap: 4px;
+  transition: 0.1s ease-in-out;
+}
+
+.form-input__wrapper:hover {
+  border: 1px solid var(--border-secondary);
+}
+
+.form-input__wrapper input, .form-input__wrapper textarea {
+  font-family: 'Inter', sans-serif;
+  font-weight: 150%;
+  font-size: 1.6rem;
+  font-size: normal;
+  background-color: transparent;
+  border: none;
+  color: var(--content-primary);
+}
+
+.form-input__wrapper input::placeholder, .form-input__wrapper textarea::placeholder {
+  color: var(--content-secondary);
+}
+
+.form-input__wrapper input:focus, .form-input__wrapper textarea:focus {
+  outline: none;
+  border: none;
+}
+
+.form-input__wrapper:has(input:focus), .form-input__wrapper:has(textarea:focus) {
+  border: 1px solid var(--border-brand);
+}
+
+.form-input__wrapper textarea {
+  resize: none;
+  outline: none;
+  min-width: 100%;
+  height: 90px;
+}
+
+.modal-form__button {
+  color: #050505;
+  font: var(--label-large);
+  background: var(--content-brand);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+}
+
+.modal-form__button:hover {
+  background: var(--background-highlights);
+}
+
+.modal-form__data-input {
+  display: flex;
+  width: 100%;
+  gap: 16px;
+}
+
+.modal-form__button-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 26px;
+}
