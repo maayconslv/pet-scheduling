@@ -1,23 +1,45 @@
 export class ValidateTime {
   static date(value) {
-    const [day, month, year] = value.split('/').map(Number);
-  const date = new Date(year, month - 1, day);
+    console.log('iniciou a validação')
 
-  if (date.getFullYear() !== year ||
-    date.getMonth() + 1 !== month ||
-    date.getDate() !== day) {
-    return false;
-  }
+    if (!(value instanceof Date) || isNaN(value.getTime())) {
+      return false;
+    }
+  
+    const day = value.getDate();
+    const month = value.getMonth() + 1;
+    const year = value.getFullYear();
+  
+    const testDate = new Date(year, month - 1, day);
+  
+    const isValid = (
+      testDate.getFullYear() === year &&
+      testDate.getMonth() + 1 === month &&
+      testDate.getDate() === day
+    );
 
-  return true;
+    console.log('isValid: ', isValid)
+
+    if(!isValid) {
+      throw new Error('A hora não está no formato correto.');
+    }
   }
 
   static hour(value) {
-    const [hour, minute] = value.split(':').map(Number);
-    return hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59;
-  }
+    if (!(value instanceof Date) || isNaN(value.getTime())) {
+      return false;
+    }
 
-  static error() {
+    const hour = value.getHours();
+    const minute = value.getMinutes();
 
+    console.log('value ', value);
+
+    const isValid = hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59;
+    console.log('is valid: ', isValid)
+
+    if(!isValid) {
+      throw new Error('A data não está no formato correto.');
+    };
   }
 }

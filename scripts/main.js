@@ -40,44 +40,41 @@ newScheduleHour.oninput = () => {
 
 form.onsubmit = (e) => {
   e.preventDefault();
-
-  const tutorName = document.querySelector('#tutor-name').value;
-  const petName = document.querySelector('#pet-name').value;
-  const phone = document.querySelector('#phone').value;
-  const serviceDescription = document.querySelector('#description').value;
   const scheduleDate = document.querySelector('#schedule-date').value;
   const scheduleHour = document.querySelector('#schedule-hour').value;
 
-  const isDateValid = ValidateTime.date(scheduleDate);
-  const isHourValid = ValidateTime.hour(scheduleHour);
-
-  if(!isDateValid) {
-    throw new Error('Formato da data não está correto.');
-  }
-  
-  if(!isHourValid) {
-    throw new Error('Formato da hora não está correto.')
-  }
-  console.log('horario ', Number(scheduleHour))
+  const [day, month, year] = scheduleDate.split('/').map(Number);
+  const [hour, minute] = scheduleHour.split(':').map(Number);
+  const dateTime = new Date(year, month - 1, day, hour, minute);
 
   const newSchedule = {
-    name: tutorName,
-    pet: petName,
-    phone,
-    description: serviceDescription,
-    date: scheduleDate,
-    hour: scheduleHour
+    name: document.querySelector('#tutor-name').value,
+    pet: document.querySelector('#pet-name').value,
+    phone: document.querySelector('#phone').value,
+    description: document.querySelector('#description').value,
+    date: dateTime,
   }
 
-  if (scheduleHour >= 9 && scheduleHour <= 12) {
-    morningSchedules.push(newSchedule);
-    Render.schedule(newSchedule, morningSchedulesList);
-  } else if (scheduleHour >= 13 && scheduleHour <= 18) {
-    afternoonSchedules.push(newSchedule);
-    Render.schedule(newSchedule, afternoonSchedulesList);
-  } else if (scheduleHour >= 19 && scheduleHour <= 21) {
-    nightSchedules.push(newSchedule);
-    Render.schedule(newSchedule, nightSchedulesList);
+  try {
+    const isMorningSchedule = hour >= 9 && hour <= 12;
+    const isAfternoonSchedule = hour >= 13 && hour <= 18;
+    const isNightSchedule = hour >= 19 && hour <= 21;
+
+    ValidateTime.date(newSchedule.date);
+    ValidateTime.hour(newSchedule.date);
+  
+    if (isMorningSchedule) {
+      morningSchedules.push(newSchedule);
+      Render.schedule(newSchedule, morningSchedulesList);
+    } else if (isAfternoonSchedule) {
+      afternoonSchedules.push(newSchedule);
+      Render.schedule(newSchedule, afternoonSchedulesList);
+    } else if (isNightSchedule) {
+      nightSchedules.push(newSchedule);
+      Render.schedule(newSchedule, nightSchedulesList);
+    }
+  } catch (error) {
+    console.log('error: ', error)
   }
 }
 
