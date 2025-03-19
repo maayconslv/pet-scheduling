@@ -1,29 +1,29 @@
 export class Render {
   static schedule(schedule, scheduleList) {
-    const wrapper = document.createElement('li');
-    wrapper.classList.add('schedules-list__item');
+    const scheduleItemWrapper = document.createElement('li');
+    scheduleItemWrapper.classList.add('schedules-list__item');
 
-    const hour = document.createElement('span');
-    hour.classList.add('schedules-list__hour');
-    hour.textContent = schedule.hour;
+    const scheduleHour = document.createElement('span');
+    scheduleHour.classList.add('schedules-list__hour');
+    scheduleHour.textContent = this.formatDate(schedule.date);
 
-    const responsibleDiv = document.createElement('div');
-    responsibleDiv.classList.add('schedules-list__responsible');
+    const responsibleNameDiv = document.createElement('div');
+    responsibleNameDiv.classList.add('schedules-list__responsible');
 
-    const pet = document.createElement('span');
-    pet.classList.add('schedules-list__pet');
-    pet.textContent = schedule.pet;
+    const petNameSpan = document.createElement('span');
+    petNameSpan.classList.add('schedules-list__pet');
+    petNameSpan.textContent = schedule.petNameSpan;
 
     const separator = document.createElement('span');
     separator.textContent = ' / ';
 
-    const tutor = document.createElement('span');
-    tutor.classList.add('schedules-list__tutor');
-    tutor.textContent = schedule.name;
+    const tutorNameSpan = document.createElement('span');
+    tutorNameSpan.classList.add('schedules-list__tutor');
+    tutorNameSpan.textContent = schedule.name;
 
-    responsibleDiv.appendChild(pet);
-    responsibleDiv.appendChild(separator);
-    responsibleDiv.appendChild(tutor);
+    responsibleNameDiv.appendChild(petNameSpan);
+    responsibleNameDiv.appendChild(separator);
+    responsibleNameDiv.appendChild(tutorNameSpan);
 
     const type = document.createElement('span');
     type.classList.add('schedules-list__type');
@@ -33,11 +33,19 @@ export class Render {
     button.classList.add('schedules-list__remove');
     button.textContent = 'Remover agendamento';
 
-    wrapper.appendChild(hour);
-    wrapper.appendChild(responsibleDiv);
-    wrapper.appendChild(type);
-    wrapper.appendChild(button);
+    scheduleItemWrapper.appendChild(scheduleHour);
+    scheduleItemWrapper.appendChild(responsibleNameDiv);
+    scheduleItemWrapper.appendChild(type);
+    scheduleItemWrapper.appendChild(button);
 
-    scheduleList.appendChild(wrapper);
+    scheduleList.appendChild(scheduleItemWrapper);
+  }
+
+  static formatDate(date) {
+    const formattedDate = new Date(date);
+    const hours = formattedDate.getHours().toString().padStart(2, '0');
+    const minutes = formattedDate.getMinutes().toString().padStart(2, '0');
+  
+    return `${hours}:${minutes}`;
   }
 }
