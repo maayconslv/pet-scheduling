@@ -1,4 +1,5 @@
 import { Mask } from "./mask.js";
+import { Render } from "./render.js";
 import { ValidateTime } from "./validate.js";
 
 const newScheduleButton = document.querySelector('.schedules-button');
@@ -7,38 +8,19 @@ const newScheduleHour = document.querySelector('#schedule-hour');
 const newScheduleDate = document.querySelector('#schedule-date');
 const newSchedulePhone = document.querySelector('#phone');
 const form = document.querySelector('.modal-form');
+const morningSchedulesList = document.querySelector('.morning-schedules');
+const afternoonSchedulesList = document.querySelector('.afternoon-schedules');
+const nightSchedulesList = document.querySelector('.night-schedules');
 
 const morningSchedules = [];
 const afternoonSchedules = [];
 const nightSchedules = [];
 
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.querySelector(".header-calendar__wrapper input");
-
-  input.addEventListener("input", function (e) {
-    let value = e.target.value.replace(/\D/g, "");
-    if (value.length > 8) {
-      value = value.substring(0, 8);
-    }
-
-    let formattedValue = "";
-    if (value.length > 4) {
-      formattedValue = `${value.substring(0, 2)}/${value.substring(2, 4)}/${value.substring(4)}`;
-    } else if (value.length > 2) {
-      formattedValue = `${value.substring(0, 2)}/${value.substring(2)}`;
-    } else {
-      formattedValue = value;
-    }
-
-    e.target.value = formattedValue;
-  });
-
-  input.addEventListener("blur", function () {
-    if (input.value.length !== 10) {
-      input.value = "";
-    }
-  });
-});
+window.onload = () => {
+  morningSchedules.forEach((schedule) => Render.schedule(schedule, morningSchedulesList));
+  afternoonSchedules.forEach((schedule) => Render.schedule(schedule, afternoonSchedulesList));
+  nightSchedules.forEach((schedule) => Render.schedule(schedule, nightSchedulesList));
+}
 
 newScheduleButton.onclick = () => {
   newScheduleForm.showModal();
@@ -49,11 +31,11 @@ newSchedulePhone.oninput = () => {
 }
 
 newScheduleDate.oninput = () => {
-  newScheduleDate.value = Mask.date(value);
+  newScheduleDate.value = Mask.date(newScheduleDate.value);
 };
 
 newScheduleHour.oninput = () => {
-  newScheduleHour.value = Mask.hour(value);
+  newScheduleHour.value = Mask.hour(newScheduleHour.value);
 }
 
 form.onsubmit = (e) => {
@@ -69,6 +51,15 @@ form.onsubmit = (e) => {
   const isDateValid = ValidateTime.date(scheduleDate);
   const isHourValid = ValidateTime.hour(scheduleHour);
 
+  if(!isDateValid) {
+    throw new Error('Formato da data não está correto.');
+  }
+  
+  if(!isHourValid) {
+    throw new Error('Formato da hora não está correto.')
+  }
+  console.log('horario ', Number(scheduleHour))
+
   const newSchedule = {
     name: tutorName,
     pet: petName,
@@ -78,9 +69,16 @@ form.onsubmit = (e) => {
     hour: scheduleHour
   }
 
-  console.log('new schedule: ', newSchedule);
-
-  console.log('uhu deu submit')
+  if (scheduleHour >= 9 && scheduleHour <= 12) {
+    morningSchedules.push(newSchedule);
+    Render.schedule(newSchedule, morningSchedulesList);
+  } else if (scheduleHour >= 13 && scheduleHour <= 18) {
+    afternoonSchedules.push(newSchedule);
+    Render.schedule(newSchedule, afternoonSchedulesList);
+  } else if (scheduleHour >= 19 && scheduleHour <= 21) {
+    nightSchedules.push(newSchedule);
+    Render.schedule(newSchedule, nightSchedulesList);
+  }
 }
 
 

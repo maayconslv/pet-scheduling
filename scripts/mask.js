@@ -15,7 +15,7 @@ export class Mask {
   }
 
   static date(value) {
-    value = newScheduleDate.value
+    value = value
     .replace(/\D/g, '')
     .replace(/(\d{2})(\d)/, '$1/$2')
     .replace(/(\d{2})(\d)/, '$1/$2')
@@ -25,7 +25,7 @@ export class Mask {
   }
 
   static hour(value) {
-    value = newScheduleHour.value.replace(/\D/g, '')
+    value = value.replace(/\D/g, '')
     .replace(/(\d{2})(\d)/, '$1:$2')
     .slice(0, 5);
 

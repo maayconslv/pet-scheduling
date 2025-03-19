@@ -14,6 +14,10 @@ export class ValidateTime {
 
   static hour(value) {
     const [hour, minute] = value.split(':').map(Number);
-  return hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59;
+    return hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59;
+  }
+
+  static error() {
+
   }
 }
