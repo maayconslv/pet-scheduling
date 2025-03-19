@@ -1,8 +1,16 @@
+import { Mask } from "./mask.js";
+import { ValidateTime } from "./validate.js";
+
 const newScheduleButton = document.querySelector('.schedules-button');
 const newScheduleForm = document.querySelector('.modal');
 const newScheduleHour = document.querySelector('#schedule-hour');
 const newScheduleDate = document.querySelector('#schedule-date');
+const newSchedulePhone = document.querySelector('#phone');
 const form = document.querySelector('.modal-form');
+
+const morningSchedules = [];
+const afternoonSchedules = [];
+const nightSchedules = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   const input = document.querySelector(".header-calendar__wrapper input");
@@ -36,38 +44,16 @@ newScheduleButton.onclick = () => {
   newScheduleForm.showModal();
 }
 
+newSchedulePhone.oninput = () => {
+  newSchedulePhone.value = Mask.phone(newSchedulePhone.value);
+}
+
 newScheduleDate.oninput = () => {
-  let value = newScheduleDate.value
-    .replace(/\D/g, '')
-    .replace(/(\d{2})(\d)/, '$1/$2')
-    .replace(/(\d{2})(\d)/, '$1/$2')
-    .slice(0, 10);
-  newScheduleDate.value = value;
+  newScheduleDate.value = Mask.date(value);
 };
 
 newScheduleHour.oninput = () => {
-  let value = newScheduleHour.value.replace(/\D/g, '')
-    .replace(/(\d{2})(\d)/, '$1:$2')
-    .slice(0, 5);
-    newScheduleHour.value = value;
-}
-
-function validateDate(value) {
-  const [day, month, year] = value.split('/').map(Number);
-  const date = new Date(year, month - 1, day);
-
-  if (date.getFullYear() !== year ||
-    date.getMonth() + 1 !== month ||
-    date.getDate() !== day) {
-    return false;
-  }
-
-  return true;
-}
-
-function validateHour(value) {
-  const [hour, minute] = value.split(':').map(Number);
-  return hour >= 0 && hour <= 23 && minute >= 0 && minute <= 59;
+  newScheduleHour.value = Mask.hour(value);
 }
 
 form.onsubmit = (e) => {
@@ -80,8 +66,8 @@ form.onsubmit = (e) => {
   const scheduleDate = document.querySelector('#schedule-date').value;
   const scheduleHour = document.querySelector('#schedule-hour').value;
 
-  const isDateValid = validateDate(scheduleDate);
-  const isHourValid = validateHour(scheduleHour);
+  const isDateValid = ValidateTime.date(scheduleDate);
+  const isHourValid = ValidateTime.hour(scheduleHour);
 
   const newSchedule = {
     name: tutorName,
