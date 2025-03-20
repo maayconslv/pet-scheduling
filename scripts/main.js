@@ -11,6 +11,7 @@ const form = document.querySelector('.modal-form');
 const morningSchedulesList = document.querySelector('.morning-schedules');
 const afternoonSchedulesList = document.querySelector('.afternoon-schedules');
 const nightSchedulesList = document.querySelector('.night-schedules');
+ const errorMessage = document.querySelector('.error-message');
 
 const morningSchedules = [];
 const afternoonSchedules = [];
@@ -45,14 +46,14 @@ form.onsubmit = (e) => {
   
   try {
     const [hour] = scheduleHour.split(':').map(Number);
-    const dateTime = ValidateTime.formatHour(scheduleDate, scheduleHour);
+    const formattedDateTime = ValidateTime.formatHour(scheduleDate, scheduleHour);
 
     const newSchedule = {
       name: document.querySelector('#tutor-name').value,
       pet: document.querySelector('#pet-name').value,
       phone: document.querySelector('#phone').value,
       description: document.querySelector('#description').value,
-      date: dateTime,
+      date: formattedDateTime,
     }
 
     const isMorningSchedule = hour >= 9 && hour <= 12;
@@ -70,9 +71,10 @@ form.onsubmit = (e) => {
       Render.schedule(newSchedule, nightSchedulesList);
     }
 
+    errorMessage.textContent = '';
     newScheduleForm.close();
   } catch (error) {
-    console.log('error: ', error)
+    errorMessage.textContent = error.message;
   }
 }
 

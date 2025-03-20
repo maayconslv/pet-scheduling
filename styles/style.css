@@ -10,6 +10,7 @@
   --content-secondary: #98959d;
   --content-tertiary: #666666;
   --content-brand: #9282fa;
+  --content-error: #db4e4e;
 
   /* background */
   --background-primary: #151515;
@@ -64,4 +65,9 @@ body {
   padding: 12px 20px;
   background-color: #2E2C30;
   border-radius: 0 0 12px 0;
+}
+
+.error-message {
+  font: var(--label-small);
+  color: var(--content-error)
 }
