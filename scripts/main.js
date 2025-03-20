@@ -73,6 +73,8 @@ form.onsubmit = (e) => {
       nightSchedules.push(newSchedule);
       Render.schedule(newSchedule, nightSchedulesList);
     }
+
+    newScheduleForm.close();
   } catch (error) {
     console.log('error: ', error)
   }

@@ -56,3 +56,12 @@ body {
   width: 50%;
   height: calc(100% - (62px * 2));
 }
+
+.logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 12px 20px;
+  background-color: #2E2C30;
+  border-radius: 0 0 12px 0;
+}
