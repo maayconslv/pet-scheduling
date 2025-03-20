@@ -42,27 +42,23 @@ form.onsubmit = (e) => {
   e.preventDefault();
   const scheduleDate = document.querySelector('#schedule-date').value;
   const scheduleHour = document.querySelector('#schedule-hour').value;
-
-  const [day, month, year] = scheduleDate.split('/').map(Number);
-  const [hour, minute] = scheduleHour.split(':').map(Number);
-  const dateTime = new Date(year, month - 1, day, hour, minute);
-
-  const newSchedule = {
-    name: document.querySelector('#tutor-name').value,
-    pet: document.querySelector('#pet-name').value,
-    phone: document.querySelector('#phone').value,
-    description: document.querySelector('#description').value,
-    date: dateTime,
-  }
-
+  
   try {
+    const [hour] = scheduleHour.split(':').map(Number);
+    const dateTime = ValidateTime.formatHour(scheduleDate, scheduleHour);
+
+    const newSchedule = {
+      name: document.querySelector('#tutor-name').value,
+      pet: document.querySelector('#pet-name').value,
+      phone: document.querySelector('#phone').value,
+      description: document.querySelector('#description').value,
+      date: dateTime,
+    }
+
     const isMorningSchedule = hour >= 9 && hour <= 12;
     const isAfternoonSchedule = hour >= 13 && hour <= 18;
     const isNightSchedule = hour >= 19 && hour <= 21;
 
-    ValidateTime.date(newSchedule.date);
-    ValidateTime.hour(newSchedule.date);
-  
     if (isMorningSchedule) {
       morningSchedules.push(newSchedule);
       Render.schedule(newSchedule, morningSchedulesList);

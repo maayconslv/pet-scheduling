@@ -12,7 +12,7 @@ export class Render {
 
     const petNameSpan = document.createElement('span');
     petNameSpan.classList.add('schedules-list__pet');
-    petNameSpan.textContent = schedule.petNameSpan;
+    petNameSpan.textContent = schedule.pet;
 
     const separator = document.createElement('span');
     separator.textContent = ' / ';
