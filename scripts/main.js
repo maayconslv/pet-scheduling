@@ -18,6 +18,14 @@ const afternoonSchedules = [];
 const nightSchedules = [];
 
 window.onload = () => {
+  const savedMorning = JSON.parse(localStorage.getItem("morningSchedules")) || [];
+  const savedAfternoon = JSON.parse(localStorage.getItem("afternoonSchedules")) || [];
+  const savedNight = JSON.parse(localStorage.getItem("nightSchedules")) || [];
+
+  morningSchedules.push(...savedMorning);
+  afternoonSchedules.push(...savedAfternoon);
+  nightSchedules.push(...savedNight);
+
   morningSchedules.forEach((schedule) => Render.schedule(schedule, morningSchedulesList));
   afternoonSchedules.forEach((schedule) => Render.schedule(schedule, afternoonSchedulesList));
   nightSchedules.forEach((schedule) => Render.schedule(schedule, nightSchedulesList));
@@ -62,12 +70,15 @@ form.onsubmit = (e) => {
 
     if (isMorningSchedule) {
       morningSchedules.push(newSchedule);
+      localStorage.setItem("morningSchedules", JSON.stringify(morningSchedules));
       Render.schedule(newSchedule, morningSchedulesList);
     } else if (isAfternoonSchedule) {
       afternoonSchedules.push(newSchedule);
+      localStorage.setItem("afternoonSchedules", JSON.stringify(afternoonSchedules));
       Render.schedule(newSchedule, afternoonSchedulesList);
     } else if (isNightSchedule) {
       nightSchedules.push(newSchedule);
+      localStorage.setItem("nightSchedules", JSON.stringify(nightSchedules));
       Render.schedule(newSchedule, nightSchedulesList);
     }
 
