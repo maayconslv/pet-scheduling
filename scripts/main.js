@@ -11,7 +11,7 @@ const form = document.querySelector('.modal-form');
 const morningSchedulesList = document.querySelector('.morning-schedules');
 const afternoonSchedulesList = document.querySelector('.afternoon-schedules');
 const nightSchedulesList = document.querySelector('.night-schedules');
- const errorMessage = document.querySelector('.error-message');
+const errorMessage = document.querySelector('.error-message');
 
 const morningSchedules = [];
 const afternoonSchedules = [];
@@ -43,7 +43,7 @@ form.onsubmit = (e) => {
   e.preventDefault();
   const scheduleDate = document.querySelector('#schedule-date').value;
   const scheduleHour = document.querySelector('#schedule-hour').value;
-  
+
   try {
     const [hour] = scheduleHour.split(':').map(Number);
     const formattedDateTime = ValidateTime.formatHour(scheduleDate, scheduleHour);
@@ -78,4 +78,9 @@ form.onsubmit = (e) => {
   }
 }
 
+document.querySelector(".schedules-list").addEventListener("click", function (event) {
+  if (event.target.classList.contains("schedules-list__remove")) {
+    event.target.closest("li").remove();
+  }
+});
 
