@@ -89,9 +89,34 @@ form.onsubmit = (e) => {
   }
 }
 
-document.querySelector(".schedules-list").addEventListener("click", function (event) {
+document.addEventListener("click", function (event) {
   if (event.target.classList.contains("schedules-list__remove")) {
-    event.target.closest("li").remove();
+    const li = event.target.closest("li");
+    if (!li) {
+      return;
+    };
+
+    const pet = li.querySelector(".schedules-list__pet").textContent.trim();
+    const description = li.querySelector('.schedules-list__type').textContent.trim();
+
+
+    let scheduleArrayName;
+    if (li.closest(".morning-schedules")) {
+      scheduleArrayName = "morningSchedules";
+    } else if (li.closest(".afternoon-schedules")) {
+      scheduleArrayName = "afternoonSchedules";
+    } else if (li.closest(".night-schedules")) {
+      scheduleArrayName = "nightSchedules";
+    }
+
+    if (scheduleArrayName) {
+      let schedules = JSON.parse(localStorage.getItem(scheduleArrayName)) || [];
+      schedules = schedules.filter((schedule) => {
+        return schedule.pet !== pet & schedule.type !== description;
+      });
+
+      localStorage.setItem(scheduleArrayName, JSON.stringify(schedules));
+      li.remove();
+    }
   }
 });
-
