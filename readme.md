@@ -9,7 +9,7 @@ Este é um projeto desenvolvido utilizando HTML, CSS e JavaScript.  O *Agendamen
 - JavaScript
 
 ## Deploy
-O projeto está disponível em: [Acesse aqui](https://number-picker-pi.vercel.app/)
+O projeto está disponível em: [Acesse aqui](https://pet-scheduling.vercel.app/)
 
 ## Como Rodar o Projeto Localmente
 1. Clone o repositório:
