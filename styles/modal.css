@@ -51,6 +51,7 @@
 }
 
 .form-input__wrapper input, .form-input__wrapper textarea {
+  width: 100%;
   font-family: 'Inter', sans-serif;
   font-weight: 150%;
   font-size: 1.6rem;
